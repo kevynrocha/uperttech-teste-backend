@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "allowJs": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["types", "node_modules/@types"],
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules", "typings", "*.js"]
+}
