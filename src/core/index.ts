@@ -46,7 +46,10 @@ interface Core {
     userId: User['id']
   ) => Promise<void>
 
-  createTodo: (todoData: TodoData) => Promise<Todo>
+  createTodo: (
+    AuthTokenData: AuthTokenData | undefined,
+    todoData: TodoData
+  ) => Promise<Todo>
 
   getTodos: (authTokenData: AuthTokenData | undefined) => Promise<Todo[]>
 
