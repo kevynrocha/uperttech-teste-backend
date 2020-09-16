@@ -16,7 +16,9 @@ describe('createTodo test', () => {
   const user = User(userData)
 
   const todoData = {
-    // TODO: Insira aqui os atributos da sua entidade Todo
+    userId: user.id,
+    description: 'description test',
+    completed: false
   }
 
   const createTodoUC = createTodo(todoRepository, userRepository)
