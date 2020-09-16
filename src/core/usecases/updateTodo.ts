@@ -19,17 +19,23 @@ export const updateTodo = (todoRepository: Repository<Todo>) => async (
   const todo = await todoRepository.findOne({ id })
 
   if (!todo) {
-    throw NotFoundError('Usuário inexistente')
+    throw NotFoundError('Tarefa inexistente')
   }
 
-  if (authTokenData.id !== todo.id) {
+  if (authTokenData.id !== todo.userId) {
     throw PermissionError(
       'O usuário fornecido não tem permissão para executar essa operação'
     )
   }
 
+  const updatedTodo = {
+    userId: todoData.userId || todo?.userId,
+    description: todoData.description || todo?.description,
+    completed: todoData.completed || todo?.completed
+  }
+
   try {
-    await todoRepository.update({ id }, todoData)
+    await todoRepository.update({ id }, updatedTodo)
   } catch (error) {
     throw CoreError()
   }
