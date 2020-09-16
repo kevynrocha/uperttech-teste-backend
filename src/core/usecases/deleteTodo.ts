@@ -21,7 +21,7 @@ export const deleteTodo = (todoRepository: Repository<Todo>) => async (
     throw NotFoundError('Tarefa inexistente')
   }
 
-  if (authTokenData.id !== todo.id) {
+  if (authTokenData.id !== todo.userId) {
     throw PermissionError(
       'O usuário fornecido não tem permissão para executar essa operação'
     )
