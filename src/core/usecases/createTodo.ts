@@ -1,21 +1,24 @@
 import { Repository } from '../data/Repository'
 import { Todo, TodoData } from '../entities/Todo'
 import { BadDataError, CoreError, PermissionError } from '../entities/CoreError'
-import { AuthTokenData, User } from '..'
+import { User, AuthTokenData } from '..'
 
-export const createTodo = (todoRepository: Repository<Todo>) => async (
+export const createTodo = (
+  todoRepository: Repository<Todo>,
+  userRepository: Repository<User>
+) => async (
   authTokenData: AuthTokenData | undefined,
   todoData: TodoData
 ): Promise<Todo> => {
-  // if (!authTokenData) {
-  //   throw PermissionError('A requisição deve estar autentificada')
-  // }
+  if (!authTokenData) {
+    throw PermissionError('A requisição deve estar autentificada')
+  }
 
-  // if (!anotherUser) {
-  //   throw BadDataError(
-  //     'Usuário ao qual você deseja criar uma tarefa não existe'
-  //   )
-  // }
+  const existsUser = await userRepository.findOne({ id: todoData.userId })
+
+  if (!existsUser) {
+    throw BadDataError('Usuário ao qual você deseja criar a tarefa não existe')
+  }
 
   const todo = Todo({
     userId: todoData.userId,

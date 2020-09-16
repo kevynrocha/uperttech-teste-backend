@@ -2,6 +2,7 @@ import { Repository } from './data/Repository'
 
 import { AuthTokenData, AuthToken } from './entities/AuthToken'
 import { User, UserData } from './entities/User'
+import { Todo, TodoData } from './entities/Todo'
 import { CoreError } from './entities/CoreError'
 
 import {
@@ -13,8 +14,6 @@ import { getUsers } from './usecases/getUsers'
 import { createUser } from './usecases/createUser'
 import { updateUser } from './usecases/updateUser'
 import { deleteUser } from './usecases/deleteUser'
-
-import { Todo, TodoData } from './entities/Todo'
 
 import { getTodos } from './usecases/getTodos'
 import { createTodo } from './usecases/createTodo'
@@ -75,7 +74,7 @@ export const Core = ({
   updateUser: updateUser(userRepository),
   deleteUser: deleteUser(userRepository),
 
-  createTodo: createTodo(todoRepository),
+  createTodo: createTodo(todoRepository, userRepository),
   getTodos: getTodos(todoRepository),
   updateTodo: updateTodo(todoRepository),
   deleteTodo: deleteTodo(todoRepository)
