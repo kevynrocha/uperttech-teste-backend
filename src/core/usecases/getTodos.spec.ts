@@ -8,7 +8,9 @@ describe('getTodos test', () => {
 
   const todoUserId = 'userid'
   const todo = Todo({
-    // TODO: Insira aqui os atributos da sua entidade Todo
+    userId: 'userId test',
+    description: 'description test',
+    completed: false
   })
 
   beforeAll(done => {
