@@ -8,11 +8,13 @@ describe('updateTodo test', () => {
 
   const todoUserId = 'userid'
   const todo = Todo({
-    // TODO: Insira aqui os atributos da sua entidade Todo
+    userId: 'userid',
+    description: 'description test',
+    completed: false
   })
 
   const updateTodoData = {
-    // TODO: Insira aqui os atributos atualizados do seu Todo
+    description: 'updated description'
   }
 
   beforeAll(done => {
@@ -27,7 +29,7 @@ describe('updateTodo test', () => {
     ).rejects.toBeDefined()
   })
 
-  it('Deve atualizar um usuário', async () => {
+  it('Deve atualizar uma tarefa', async () => {
     const authToken: AuthTokenData = { id: todoUserId }
 
     await expect(
@@ -36,7 +38,6 @@ describe('updateTodo test', () => {
 
     const updatedTodo = await todoRepository.findOne({ id: todo.id })
 
-    // TODO: Testar atributo atualizado
-    expect(updatedTodo?.name).toBe(updateTodoData.name)
+    expect(updatedTodo?.description).toBe(updateTodoData.description)
   })
 })
