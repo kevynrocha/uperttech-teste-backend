@@ -8,7 +8,9 @@ describe('deleteTodo test', () => {
 
   const todoUserId = 'userid'
   const todo = Todo({
-    // TODO: Insira aqui os atributos da sua entidade Todo
+    userId: 'userid',
+    description: 'description test',
+    completed: false
   })
 
   beforeAll(done => {
@@ -21,10 +23,10 @@ describe('deleteTodo test', () => {
     expect(deleteTodoUC(undefined, todo.id)).rejects.toBeDefined()
   })
 
-  it('Deve deletar um todo', async () => {
+  it('Deve deletar uma tarefa', async () => {
     const authToken: AuthTokenData = { id: todoUserId }
 
-    await expect(deleteTodoUC(authToken, todoUserId)).resolves.toBeUndefined()
+    await expect(deleteTodoUC(authToken, todo.id)).resolves.toBeUndefined()
     await expect(todoRepository.find()).resolves.toStrictEqual([])
   })
 })
